@@ -2,9 +2,9 @@
 
 namespace AnanasWeb\LaravelMonitoring\Tests;
 
+use AnanasWeb\LaravelMonitoring\LaravelMonitoringServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use AnanasWeb\LaravelMonitoring\LaravelMonitoringServiceProvider;
 
 class TestCase extends Orchestra
 {

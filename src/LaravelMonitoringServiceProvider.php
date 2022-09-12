@@ -2,9 +2,9 @@
 
 namespace AnanasWeb\LaravelMonitoring;
 
+use AnanasWeb\LaravelMonitoring\Commands\LaravelMonitoringCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use AnanasWeb\LaravelMonitoring\Commands\LaravelMonitoringCommand;
 
 class LaravelMonitoringServiceProvider extends PackageServiceProvider
 {
