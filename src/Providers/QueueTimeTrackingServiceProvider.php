@@ -75,7 +75,7 @@ class QueueTimeTrackingServiceProvider extends ServiceProvider
         $cpuUsage = getrusage();
 
         app(LoggerInterface::class)->info('JOB_PROCESSED', [
-            'hostname' => gethostname() ?? '',
+            'hostname' => gethostname() ?: '',
             'jobName' => $event->job->resolveName(),
             'jobId' => $event->job->getJobId(),
             'jobProcessingTime' => $finishedAt - $event->job->startedAt,
@@ -95,7 +95,7 @@ class QueueTimeTrackingServiceProvider extends ServiceProvider
             $finishedAt - $event->job->startedAt,
             [
                 $event->job->getQueue(),
-                gethostname() ?? '',
+                gethostname() ?: '',
                 $event->job->resolveName(),
                 $event->job->hasFailed(),
             ]

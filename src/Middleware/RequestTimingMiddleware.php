@@ -47,7 +47,7 @@ class RequestTimingMiddleware
     /**
      * @param  Request  $request
      * @param  Closure  $next
-     * @return mixed
+     * @return Response
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -77,7 +77,7 @@ class RequestTimingMiddleware
         $this->requestHistogram->observe(
             $endTime - $startTime,
             [
-                gethostname() ?? '',
+                gethostname() ?: '',
                 $request->getMethod(),
                 $request->route()->uri(),
                 $response->getStatusCode(),
