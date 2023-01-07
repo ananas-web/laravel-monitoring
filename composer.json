@@ -17,8 +17,11 @@
     ],
     "require": {
         "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.13.0",
-        "illuminate/contracts": "^9.0"
+        "ext-redis": "*",
+        "illuminate/contracts": "^9.0",
+        "promphp/prometheus_client_php": "^2.6",
+        "psr/log": "^1.0.1 || ^2.0 || ^3.0",
+        "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -34,8 +37,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AnanasWeb\\LaravelMonitoring\\": "src",
-            "AnanasWeb\\LaravelMonitoring\\Database\\Factories\\": "database/factories"
+            "AnanasWeb\\LaravelMonitoring\\": "src"
         }
     },
     "autoload-dev": {
@@ -50,7 +52,11 @@
         "format": "vendor/bin/pint"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "laravel": {

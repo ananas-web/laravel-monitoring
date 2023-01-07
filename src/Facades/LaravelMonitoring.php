@@ -2,6 +2,7 @@
 
 namespace AnanasWeb\LaravelMonitoring\Facades;
 
+use AnanasWeb\LaravelMonitoring\MetricsExporter;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -9,8 +10,9 @@ use Illuminate\Support\Facades\Facade;
  */
 class LaravelMonitoring extends Facade
 {
+    /** @noinspection PhpMissingReturnTypeInspection */
     protected static function getFacadeAccessor()
     {
-        return \AnanasWeb\LaravelMonitoring\LaravelMonitoring::class;
+        return MetricsExporter::class;
     }
 }
