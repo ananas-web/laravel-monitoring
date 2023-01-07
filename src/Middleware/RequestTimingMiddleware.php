@@ -18,6 +18,7 @@ class RequestTimingMiddleware
     use CPUTiming;
 
     private LoggerInterface $logger;
+
     private Histogram $requestHistogram;
 
     /**
@@ -44,9 +45,8 @@ class RequestTimingMiddleware
     }
 
     /**
-     * @param Request $request
-     * @param Closure $next
-     *
+     * @param  Request  $request
+     * @param  Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next): Response
@@ -62,7 +62,7 @@ class RequestTimingMiddleware
             'routeName' => $request->route()->getName(),
             'routeUrl' => $request->route()->uri(),
             'controllerClass' => $request->route()->controller ? $request->route()->getControllerClass() : null,
-            'controllerActionMethod' =>  $request->route()->controller ? $request->route()->getActionMethod() : null,
+            'controllerActionMethod' => $request->route()->controller ? $request->route()->getActionMethod() : null,
             'parameters' => json_encode($request->route()->parameters()),
             'requestPayload' => json_encode($request->all()),
             'requestPayloadFiles' => json_encode($request->allFiles()),
@@ -86,7 +86,4 @@ class RequestTimingMiddleware
 
         return $response;
     }
-
 }
-
-

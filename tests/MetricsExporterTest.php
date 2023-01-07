@@ -2,7 +2,6 @@
 
 namespace AnanasWeb\LaravelMonitoring\Tests;
 
-
 use AnanasWeb\LaravelMonitoring\Collectors\CollectorInterface;
 use AnanasWeb\LaravelMonitoring\Exceptions\InvalidArgumentException;
 use AnanasWeb\LaravelMonitoring\MetricsExporter;
@@ -16,7 +15,7 @@ use Prometheus\Histogram;
 
 class MetricsExporterTest extends \PHPUnit\Framework\TestCase
 {
-    public function testConstruct() : void
+    public function testConstruct(): void
     {
         $registry = Mockery::mock(CollectorRegistry::class);
         $exporter = new MetricsExporter('app', $registry);
@@ -24,7 +23,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($registry, $exporter->getPrometheus());
     }
 
-    public function testConstructWithCollectors() : void
+    public function testConstructWithCollectors(): void
     {
         $collector1 = Mockery::mock(CollectorInterface::class);
         $collector1->shouldReceive('getName')
@@ -52,7 +51,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($collector2, $collectors['search_requests']);
     }
 
-    public function testRegisterCollector() : void
+    public function testRegisterCollector(): void
     {
         $registry = Mockery::mock(CollectorRegistry::class);
         $exporter = new MetricsExporter('app', $registry);
@@ -75,7 +74,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($collector, $collectors['users']);
     }
 
-    public function testRegisterCollectorWhenCollectorIsAlreadyRegistered() : void
+    public function testRegisterCollectorWhenCollectorIsAlreadyRegistered(): void
     {
         $registry = Mockery::mock(CollectorRegistry::class);
         $exporter = new MetricsExporter('app', $registry);
@@ -104,7 +103,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($collector, $collectors['users']);
     }
 
-    public function testGetCollector() : void
+    public function testGetCollector(): void
     {
         $registry = Mockery::mock(CollectorRegistry::class);
         $exporter = new MetricsExporter('app', $registry);
@@ -125,7 +124,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($collector, $c);
     }
 
-    public function testGetCollectorWhenCollectorIsNotRegistered() : void
+    public function testGetCollectorWhenCollectorIsNotRegistered(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('The collector "test" is not registered.');
@@ -139,7 +138,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricsRegistrationException
      */
-    public function testRegisterCounter() : void
+    public function testRegisterCounter(): void
     {
         $counter = Mockery::mock(Counter::class);
 
@@ -167,7 +166,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricNotFoundException
      */
-    public function testGetCounter() : void
+    public function testGetCounter(): void
     {
         $counter = Mockery::mock(Counter::class);
 
@@ -189,7 +188,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricsRegistrationException
      */
-    public function testGetOrRegisterCounter() : void
+    public function testGetOrRegisterCounter(): void
     {
         $counter = Mockery::mock(Counter::class);
 
@@ -217,7 +216,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricsRegistrationException
      */
-    public function testRegisterGauge() : void
+    public function testRegisterGauge(): void
     {
         $gauge = Mockery::mock(Gauge::class);
 
@@ -245,7 +244,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricNotFoundException
      */
-    public function testGetGauge() : void
+    public function testGetGauge(): void
     {
         $gauge = Mockery::mock(Gauge::class);
 
@@ -267,7 +266,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricsRegistrationException
      */
-    public function testGetOrRegisterGauge() : void
+    public function testGetOrRegisterGauge(): void
     {
         $gauge = Mockery::mock(Gauge::class);
 
@@ -295,7 +294,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricsRegistrationException
      */
-    public function testRegisterHistogram() : void
+    public function testRegisterHistogram(): void
     {
         $histogram = Mockery::mock(Histogram::class);
 
@@ -325,7 +324,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricNotFoundException
      */
-    public function testGetHistogram() : void
+    public function testGetHistogram(): void
     {
         $histogram = Mockery::mock(Histogram::class);
 
@@ -347,7 +346,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws MetricsRegistrationException
      */
-    public function testGetOrRegisterHistogram() : void
+    public function testGetOrRegisterHistogram(): void
     {
         $histogram = Mockery::mock(Histogram::class);
 
@@ -374,7 +373,7 @@ class MetricsExporterTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($histogram, $h);
     }
 
-    public function testExport() : void
+    public function testExport(): void
     {
         $samples = ['meh'];
 

@@ -12,7 +12,7 @@ class FakeCollector implements CollectorInterface
 
     public function getName(): string
     {
-       return 'fake_gauge';
+        return 'fake_gauge';
     }
 
     public function registerMetrics(MetricsExporter $exporter): void

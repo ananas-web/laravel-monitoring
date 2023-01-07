@@ -27,6 +27,7 @@ class LaravelMonitoringServiceProvider extends PackageServiceProvider
                 $collector = $this->app->make($collectorClass);
                 $exporter->registerCollector($collector);
             }
+
             return $exporter;
         });
         $this->app->alias(MetricsExporter::class, 'prometheus');
@@ -36,7 +37,6 @@ class LaravelMonitoringServiceProvider extends PackageServiceProvider
             return new StorageAdapterFactory();
         });
         $this->app->alias('monitoring.storage_adapter_factory', 'prometheus.storage_adapter_factory');
-
 
         $this->app->bind(Adapter::class, function ($app) {
             /* @var StorageAdapterFactory $factory */
@@ -58,6 +58,4 @@ class LaravelMonitoringServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasRoute('monitoring');
     }
-
-
 }

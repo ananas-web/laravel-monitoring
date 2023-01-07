@@ -2,7 +2,6 @@
 
 namespace AnanasWeb\LaravelMonitoring;
 
-
 use AnanasWeb\LaravelMonitoring\Collectors\CollectorInterface;
 use AnanasWeb\LaravelMonitoring\Exceptions\InvalidArgumentException;
 use Prometheus\CollectorRegistry;
@@ -22,9 +21,9 @@ class MetricsExporter
     protected array $collectors = [];
 
     /**
-     * @param string $namespace
-     * @param CollectorRegistry $prometheus
-     * @param array $collectors
+     * @param  string  $namespace
+     * @param  CollectorRegistry  $prometheus
+     * @param  array  $collectors
      */
     public function __construct(string $namespace, CollectorRegistry $prometheus, array $collectors = [])
     {
@@ -60,13 +59,13 @@ class MetricsExporter
     /**
      * Register a collector.
      *
-     * @param CollectorInterface $collector
+     * @param  CollectorInterface  $collector
      */
     public function registerCollector(CollectorInterface $collector): void
     {
         $name = $collector->getName();
 
-        if (!isset($this->collectors[$name])) {
+        if (! isset($this->collectors[$name])) {
             $this->collectors[$name] = $collector;
 
             $collector->registerMetrics($this);
@@ -86,13 +85,12 @@ class MetricsExporter
     /**
      * Return a collector by name.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return CollectorInterface
      */
     public function getCollector(string $name): CollectorInterface
     {
-        if (!isset($this->collectors[$name])) {
+        if (! isset($this->collectors[$name])) {
             throw new InvalidArgumentException(sprintf('The collector "%s" is not registered.', $name));
         }
 
@@ -102,13 +100,13 @@ class MetricsExporter
     /**
      * Register a counter.
      *
-     * @param string $name
-     * @param string $help
-     * @param array $labels
-     *
+     * @param  string  $name
+     * @param  string  $help
+     * @param  array  $labels
      * @return Counter
      *
      * @throws MetricsRegistrationException
+     *
      * @see https://prometheus.io/docs/concepts/metric_types/#counter
      */
     public function registerCounter(string $name, string $help, array $labels = []): Counter
@@ -119,9 +117,9 @@ class MetricsExporter
     /**
      * Return a counter.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return Counter
+     *
      * @throws MetricNotFoundException
      */
     public function getCounter(string $name): Counter
@@ -132,13 +130,13 @@ class MetricsExporter
     /**
      * Return or register a counter.
      *
-     * @param string $name
-     * @param string $help
-     * @param array $labels
-     *
+     * @param  string  $name
+     * @param  string  $help
+     * @param  array  $labels
      * @return Counter
      *
      * @throws MetricsRegistrationException
+     *
      * @see https://prometheus.io/docs/concepts/metric_types/#counter
      */
     public function getOrRegisterCounter(string $name, string $help, array $labels = []): Counter
@@ -149,13 +147,13 @@ class MetricsExporter
     /**
      * Register a gauge.
      *
-     * @param string $name
-     * @param string $help
-     * @param array $labels
-     *
+     * @param  string  $name
+     * @param  string  $help
+     * @param  array  $labels
      * @return Gauge
      *
      * @throws MetricsRegistrationException
+     *
      * @see https://prometheus.io/docs/concepts/metric_types/#gauge
      */
     public function registerGauge(string $name, string $help, array $labels = []): Gauge
@@ -166,9 +164,9 @@ class MetricsExporter
     /**
      * Return a gauge.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return Gauge
+     *
      * @throws MetricNotFoundException
      */
     public function getGauge(string $name): Gauge
@@ -179,13 +177,13 @@ class MetricsExporter
     /**
      * Return or register a gauge.
      *
-     * @param string $name
-     * @param string $help
-     * @param array $labels
-     *
+     * @param  string  $name
+     * @param  string  $help
+     * @param  array  $labels
      * @return Gauge
      *
      * @throws MetricsRegistrationException
+     *
      * @see https://prometheus.io/docs/concepts/metric_types/#gauge
      */
     public function getOrRegisterGauge(string $name, string $help, array $labels = []): Gauge
@@ -196,14 +194,14 @@ class MetricsExporter
     /**
      * Register a histogram.
      *
-     * @param string $name
-     * @param string $help
-     * @param array $labels
-     * @param array|null $buckets
-     *
+     * @param  string  $name
+     * @param  string  $help
+     * @param  array  $labels
+     * @param  array|null  $buckets
      * @return Histogram
      *
      * @throws MetricsRegistrationException
+     *
      * @see https://prometheus.io/docs/concepts/metric_types/#histogram
      */
     public function registerHistogram(string $name, string $help, array $labels = [], array $buckets = null): Histogram
@@ -214,9 +212,9 @@ class MetricsExporter
     /**
      * Return a histogram.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return Histogram
+     *
      * @throws MetricNotFoundException
      */
     public function getHistogram(string $name): Histogram
@@ -227,14 +225,14 @@ class MetricsExporter
     /**
      * Return or register a histogram.
      *
-     * @param string $name
-     * @param string $help
-     * @param array $labels
-     * @param array|null $buckets
-     *
+     * @param  string  $name
+     * @param  string  $help
+     * @param  array  $labels
+     * @param  array|null  $buckets
      * @return Histogram
      *
      * @throws MetricsRegistrationException
+     *
      * @see https://prometheus.io/docs/concepts/metric_types/#histogram
      */
     public function getOrRegisterHistogram(string $name, string $help, array $labels = [], array $buckets = null): Histogram

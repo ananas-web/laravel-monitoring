@@ -2,7 +2,6 @@
 
 namespace AnanasWeb\LaravelMonitoring\Tests;
 
-
 use AnanasWeb\LaravelMonitoring\LaravelMonitoringServiceProvider;
 use AnanasWeb\LaravelMonitoring\MetricsExporter;
 use AnanasWeb\LaravelMonitoring\Storage\StorageAdapterFactory;
@@ -39,7 +38,8 @@ class LaravelMonitoringServiceProviderTest extends TestCase
         $this->assertTrue($router->has('monitoring.metrics'));
     }
 
-    public function testCollectors() {
+    public function testCollectors()
+    {
         /** @var MetricsExporter $exporter */
         $exporter = $this->app[MetricsExporter::class];
         $exportData = $exporter->export();

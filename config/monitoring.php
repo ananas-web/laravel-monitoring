@@ -36,7 +36,7 @@ return [
             'persistent_connections' => env('LARAVEL_MONITORING_METRICS_REDIS_PERSISTENT_CONNECTIONS', false),
             'prefix' => env('LARAVEL_MONITORING_METRICS_REDIS_PREFIX', 'LARAVEL_MONITORING_METRICS_'),
             'prefix_dynamic' => env('LARAVEL_MONITORING_METRICS_REDIS_PREFIX_DYNAMIC', true),
-        ]
+        ],
     ],
 
     'collectors' => [],

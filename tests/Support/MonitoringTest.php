@@ -27,20 +27,20 @@ class MonitoringTest extends TestCase
         } catch (MetricNotFoundException $e) {
             $this->addToAssertionCount(1);
         } catch (Throwable $e) {
-            $this->fail('Unexpected exception thrown: ' . $e->getMessage());
+            $this->fail('Unexpected exception thrown: '.$e->getMessage());
         }
     }
 
     public function testReceiveCounter()
     {
-        $this->monitoringInstance->registerCounter("testing_counter", "Counter for testing proposes", ['l1', 'l2']);
+        $this->monitoringInstance->registerCounter('testing_counter', 'Counter for testing proposes', ['l1', 'l2']);
         $this->monitoringInstance->counter('testing_counter');
         $this->addToAssertionCount(1);
     }
 
     public function testIncreaseCounter()
     {
-        $this->monitoringInstance->registerCounter("testing_counter", "Counter for testing proposes", ['l1', 'l2']);
+        $this->monitoringInstance->registerCounter('testing_counter', 'Counter for testing proposes', ['l1', 'l2']);
 
         $this->monitoringInstance->incrementCounter('testing_counter', [200, 'POST']);
         $this->addToAssertionCount(1);
@@ -48,7 +48,7 @@ class MonitoringTest extends TestCase
 
     public function testIncreaseCounterForFive()
     {
-        $this->monitoringInstance->registerCounter("testing_counter", "Counter for testing proposes", ['l1', 'l2']);
+        $this->monitoringInstance->registerCounter('testing_counter', 'Counter for testing proposes', ['l1', 'l2']);
         $this->monitoringInstance->incrementCounter('testing_counter', [200, 'POST']);
         $this->monitoringInstance->counter('testing_counter');
         $this->addToAssertionCount(1);

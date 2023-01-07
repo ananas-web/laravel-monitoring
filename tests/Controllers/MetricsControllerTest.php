@@ -13,7 +13,9 @@ use Prometheus\RenderTextFormat;
 class MetricsControllerTest extends TestCase
 {
     private ResponseFactory $responseFactory;
+
     private MetricsExporter $exporter;
+
     private MetricsController $controller;
 
     protected function setUp(): void

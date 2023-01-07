@@ -20,10 +20,10 @@ class Monitoring
     }
 
     /**
-     *
      * @throws MetricsRegistrationException
      */
-    public function registerGauge(string $name, string $help, $labels) {
+    public function registerGauge(string $name, string $help, $labels)
+    {
         return $this->exporter->getOrRegisterGauge($name, $help, $labels);
     }
 
@@ -32,15 +32,17 @@ class Monitoring
      *
      * @throws MetricsRegistrationException
      */
-    public function registerCounter(string $name, string $help, $labels) {
+    public function registerCounter(string $name, string $help, $labels)
+    {
         return $this->exporter->getOrRegisterCounter($name, $help, $labels);
     }
 
     /**
      * Get gauge instance
      *
-     * @param string $name Name of gauge
+     * @param  string  $name Name of gauge
      * @return Gauge
+     *
      * @throws MetricNotFoundException If gauge is not registered
      */
     public function gauge(string $name): Gauge
@@ -51,8 +53,9 @@ class Monitoring
     /**
      * Get counter instance
      *
-     * @param string $name Name of counter
+     * @param  string  $name Name of counter
      * @return Counter
+     *
      * @throws MetricNotFoundException If counter is not registered
      */
     public function counter(string $name): Counter
@@ -63,8 +66,9 @@ class Monitoring
     /**
      * Get histogram instance
      *
-     * @param string $name Name of histogram
+     * @param  string  $name Name of histogram
      * @return Histogram
+     *
      * @throws MetricNotFoundException If histogram is not registered
      */
     public function histogram(string $name): Histogram
@@ -75,10 +79,11 @@ class Monitoring
     /**
      * Increments counter values. Counter with provided name should be registered.
      *
-     * @param string $name Name of counter
-     * @param array $labels Labels values associated with counter (default empty array)
-     * @param int|float $count Value for incrementing (default 1)
+     * @param  string  $name Name of counter
+     * @param  array  $labels Labels values associated with counter (default empty array)
+     * @param  int|float  $count Value for incrementing (default 1)
      * @return void
+     *
      * @throws MetricNotFoundException If counter is not registred
      * @throws InvalidArgumentException If $count is negative
      */
@@ -94,10 +99,11 @@ class Monitoring
     /**
      * Increments values of gauge
      *
-     * @param string $name Name of gauge
-     * @param array $labels Labels values associated with gauge (default empty array)
-     * @param float|int $count Value for incrementing (default 1)
+     * @param  string  $name Name of gauge
+     * @param  array  $labels Labels values associated with gauge (default empty array)
+     * @param  float|int  $count Value for incrementing (default 1)
      * @return void
+     *
      * @throws MetricNotFoundException If metric is not registered
      */
     public function incrementGauge(string $name, array $labels = [], float|int $count = 1): void
@@ -108,10 +114,11 @@ class Monitoring
     /**
      * Decrements values of gauge
      *
-     * @param string $name Name of gauge
-     * @param array $labels Labels values associated with gauge (default empty array)
-     * @param float|int $count Value for decrementing (default 1)
+     * @param  string  $name Name of gauge
+     * @param  array  $labels Labels values associated with gauge (default empty array)
+     * @param  float|int  $count Value for decrementing (default 1)
      * @return void
+     *
      * @throws MetricNotFoundException If metric is not registered
      */
     public function decrementGauge(string $name, array $labels = [], float|int $count = 1): void
@@ -122,10 +129,11 @@ class Monitoring
     /**
      * Save value to histogram
      *
-     * @param string $name Name of gauge
-     * @param float|int $value Value for observe
-     * @param array $labels Labels values associated with histogram (default empty array)
+     * @param  string  $name Name of gauge
+     * @param  float|int  $value Value for observe
+     * @param  array  $labels Labels values associated with histogram (default empty array)
      * @return void
+     *
      * @throws MetricNotFoundException If metric is not registered
      */
     public function observeHistogram(string $name, float|int $value, array $labels = []): void
@@ -136,10 +144,11 @@ class Monitoring
     /**
      * Execute callable and record measurement to histogram
      *
-     * @param callable $callback Function to be executed
-     * @param string $name Name of histogram
-     * @param array $labels Labels values associated with histogram (default empty array)
+     * @param  callable  $callback Function to be executed
+     * @param  string  $name Name of histogram
+     * @param  array  $labels Labels values associated with histogram (default empty array)
      * @return mixed Value returned by $callback
+     *
      * @throws MetricNotFoundException If histogram is not registered
      */
     public function measureAndObserve(callable $callback, string $name, array $labels = []): mixed
@@ -148,6 +157,7 @@ class Monitoring
         $response = $callback();
         $endTime = microtime(true);
         $this->observeHistogram($name, $endTime - $startTime, $labels);
+
         return $response;
     }
 }

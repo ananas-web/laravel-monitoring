@@ -29,10 +29,10 @@ class StorageAdapterFactoryTest extends TestCase
 
     public function testAPCAdapterInitialization()
     {
-        if (!extension_loaded('apcu')) {
+        if (! extension_loaded('apcu')) {
             $this->expectException(StorageException::class);
             $this->expectExceptionMessage('APCu extension is not loaded');
-        } else if (!apcu_enabled()) {
+        } elseif (! apcu_enabled()) {
             $this->expectException(StorageException::class);
             $this->expectExceptionMessage('APCu is not enabled');
         }

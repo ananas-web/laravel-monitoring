@@ -16,7 +16,7 @@ class RequestTimingMiddlewareTest extends TestCase
         $request = new Request();
 
         $request->merge([
-            'title' => 'Title is in mixed CASE'
+            'title' => 'Title is in mixed CASE',
         ]);
 
         $request->setRouteResolver(function () use ($request) {

@@ -20,9 +20,8 @@ class StorageAdapterFactory
     /**
      * Factory a storage adapter.
      *
-     * @param string $driver
-     * @param array $config
-     *
+     * @param  string  $driver
+     * @param  array  $config
      * @return Adapter
      */
     public function make(string $driver, array $config = []): Adapter
@@ -42,14 +41,13 @@ class StorageAdapterFactory
     /**
      * Factory a redis storage adapter.
      *
-     * @param array $config
-     *
+     * @param  array  $config
      * @return Redis
      */
     protected function makeRedisAdapter(array $config): Redis
     {
         if (isset($config['prefix'])) {
-            $prefix = !empty($config['prefix_dynamic']) ? sprintf('%s_%s_', $config['prefix'], $this->hostname) : $config['prefix'];
+            $prefix = ! empty($config['prefix_dynamic']) ? sprintf('%s_%s_', $config['prefix'], $this->hostname) : $config['prefix'];
             Redis::setPrefix($prefix);
         }
 

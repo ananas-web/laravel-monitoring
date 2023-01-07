@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUndefinedFieldInspection */
+<?php
+
+/** @noinspection PhpUndefinedFieldInspection */
 
 namespace AnanasWeb\LaravelMonitoring\Providers;
 
@@ -43,13 +45,15 @@ class QueueTimeTrackingServiceProvider extends ServiceProvider
 
     protected function setUpJobLogging(JobProcessing $event)
     {
-        if (!config('monitoring.track_queue_performance', true)) {
+        if (! config('monitoring.track_queue_performance', true)) {
             $event->job->measurable = false;
+
             return;
         }
 
         if ($event->job->disableMeasure ?? false) {
             $event->job->measurable = false;
+
             return;
         }
 
@@ -63,7 +67,7 @@ class QueueTimeTrackingServiceProvider extends ServiceProvider
 
     protected function finishJobProcessing(JobProcessed $event)
     {
-        if (!$event->job->measurable) {
+        if (! $event->job->measurable) {
             return;
         }
 

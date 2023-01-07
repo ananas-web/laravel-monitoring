@@ -15,11 +15,11 @@ class MetricsController extends Controller
      *
      * The route path is configurable in the monitoring.metrics.path config var
      *
-     * @param ResponseFactory $responseFactory
-     * @param MetricsExporter $metricsExporter
+     * @param  ResponseFactory  $responseFactory
+     * @param  MetricsExporter  $metricsExporter
      * @return Response
      */
-    public function __invoke(ResponseFactory $responseFactory, MetricsExporter $metricsExporter) : Response
+    public function __invoke(ResponseFactory $responseFactory, MetricsExporter $metricsExporter): Response
     {
         $metrics = $metricsExporter->export();
 
